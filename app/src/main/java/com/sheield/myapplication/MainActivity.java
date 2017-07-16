@@ -28,13 +28,14 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    public static boolean powerButtonStatus = false;
     Button button;
     private SparseIntArray mErrorString;
     public static float shake =0;
     private static final int REQUEST_PERMISSION=10;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -149,6 +150,7 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.Gps) {
             Toast.makeText(MainActivity.this,"Gps clicked",Toast.LENGTH_LONG).show();
@@ -156,9 +158,19 @@ public class MainActivity extends AppCompatActivity
 
         } else
         if (id == R.id.action_power_1) {
-            Toast.makeText(this,"Power clicked",Toast.LENGTH_LONG).show();
             Intent in= new Intent(this,LocalService.class);
+
+            item.setTitle("deactive power ");
             startService(in);
+           /* if(!powerButtonStatus){
+                powerButtonStatus =true;
+                startService(in);
+                Toast.makeText(this,"Power clicked service activated",Toast.LENGTH_LONG).show();
+
+            }*/
+
+
+
         }else
         if (id == R.id.action_power_2) {
             Toast.makeText(this,"Power clicked",Toast.LENGTH_LONG).show();
@@ -166,14 +178,14 @@ public class MainActivity extends AppCompatActivity
             stopService(in);
         }else
         if (id == R.id.action_shake_1) {
-
-            Intent is=new Intent(MainActivity.this,Main7Activity.class);
-            startActivity(is);
+            Intent is=new Intent(this,ShakeService.class);
+            startService(is);
         }else
         if (id == R.id.action_shake_2) {
+            Toast.makeText(this,"shake service stopped",Toast.LENGTH_LONG).show();
 
-            Intent is=new Intent(this,Main7Activity.class);
-            startActivity(is);
+            Intent is=new Intent(this,ShakeService.class);
+            stopService(is);
         }else
         if (id == R.id.Sensitivity) {
 

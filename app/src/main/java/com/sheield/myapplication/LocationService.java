@@ -48,7 +48,7 @@ public class LocationService extends Service {
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                geoLocation = (float)location.getLatitude()+","+(float) location.getLongitude();
+                geoLocation = location.getLatitude()+","+ location.getLongitude();
                 sendLocation();
                 stopSelf();
                 return;

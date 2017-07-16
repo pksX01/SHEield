@@ -48,9 +48,8 @@
                 <action android:name="loc" />
             </intent-filter>
         </service>
+        <service android:name=".ShakeService" />
 
-        <activity android:name=".ShakeActivity" />
-        <activity android:name=".Main7Activity"></activity>
     </application>
 
 </manifest>
